@@ -10,9 +10,7 @@ class IterativeLinkedList
       self.head = node
     else
       current = head
-      until current.link.nil?
-        current = current.link
-      end
+      current = current.link until current.link.nil?
       current.link = node
     end
   end
@@ -91,6 +89,23 @@ class IterativeLinkedList
   end
 
   def delete(node_data)
+    return head if head.nil? || head.data == node_data
+
+    prev = head
+    current = head.link
+
+    until current.link.nil?
+      if current.data == node_data
+        prev.link = current.link
+        deleted_node = current
+      end
+
+      prev = current
+      current = current.link
+    end
+
+
+
   end
 
 end

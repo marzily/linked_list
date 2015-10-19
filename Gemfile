@@ -1,5 +1,6 @@
 source "https://rubygems.org"
 
+gem 'minitest'
+gem 'byebug'
 require 'pry'
-require 'minitest'
 require 'rake'
