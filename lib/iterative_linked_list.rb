@@ -15,6 +15,11 @@ class IterativeLinkedList
     end
   end
 
+  def prepend(node)
+    node.link = head unless head.nil?
+    self.head = node
+  end
+
   def count
     return 0 if head.nil?
 

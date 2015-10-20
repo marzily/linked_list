@@ -20,6 +20,38 @@ class RecursiveLinkedList
     self.head = node
   end
 
+  def insert(node, index, list_node = head)
+    if head.nil? && index == 0
+      self.head = node
+    elsif index == 0
+      node.link = head
+      self.head = node
+    elsif index > 0
+      node.link = list_node
+      head.link = node
+    # elsif index != 0
+      # insert(node, index - 1, list_node.link)
+    else
+
+    end
+  end
+
+  # iterativeLinkedList.prototype.insert = function(node, index) {
+  #   var current = this.head;
+  #
+  #   var count = 0;
+  #   while (count !== index) {
+  #     var prev = current;
+  #     current = current.link;
+  #     count++;
+  #   }
+  #
+  #   prev.link = node;
+  #   node.link = current;
+  # };
+
+
+
   def count(list_node = head)
     if list_node.nil?
       0

@@ -17,7 +17,7 @@ class RecursiveLinkedListTest < Minitest::Test
     assert_nil @list.head.link
   end
 
-  def test_it_appends_a_node_to_the_end_of_a_one_element_list
+  def test_it_appends_a_node_to_a_one_element_list
     @list.append(Node.new(:blue))
     @list.append(Node.new(:red))
 
@@ -26,7 +26,7 @@ class RecursiveLinkedListTest < Minitest::Test
     assert_nil @list.head.link.link
   end
 
-  def test_it_appends_a_node_to_the_end_of_a_multi_element_list
+  def test_it_appends_a_node_to_a_multi_element_list
     @list.append(Node.new(:blue))
     @list.append(Node.new(:red))
     @list.append(Node.new(:yellow))
@@ -62,6 +62,26 @@ class RecursiveLinkedListTest < Minitest::Test
     assert_equal :blue, @list.head.link.data
     assert_equal :yellow, @list.head.link.link.data
     assert_nil @list.head.link.link.link
+  end
+
+  def test_it_inserts_node_into_empty_list
+    @list.insert(Node.new(:blue), 0)
+
+    assert_equal :blue, @list.head.data
+  end
+
+  def test_it_inserts_node_at_appropriate_index
+    @list.insert(Node.new(:blue), 0)
+    @list.insert(Node.new(:red), 1)
+
+    assert_equal :blue, @list.head.data
+    assert_equal :red, @list.head.link.data
+
+    # @list.insert(Node.new(:yellow), 1)
+
+    # assert_equal :blue, @list.head.data
+    # assert_equal :yellow, @list.head.link.data
+    # assert_equal :red, @list.head.link.link.data
   end
 
   def test_count_is_0_when_the_list_is_empty
