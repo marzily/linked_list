@@ -15,6 +15,11 @@ class RecursiveLinkedList
     end
   end
 
+  def prepend(node)
+    node.link = head unless head.nil?
+    self.head = node
+  end
+
   def count(list_node = head)
     if list_node.nil?
       0
@@ -33,39 +38,29 @@ class RecursiveLinkedList
     end
   end
 
-  # def recursive_pop(node)
-  #   prev = node
-  #   current = node.link
-  #
-  #   if current.link.nil?
-  #     prev.link = nil
-  #     return current
-  #   end
-  #
-  #   recursive_pop(current.link)
-  # end
-  #
-  # def pop
-  #   return if head.nil?
-  #
-  #   if count == 1
-  #     node = head
-  #     self.head = nil
-  #     node
-  #   else
-  #     recursive_pop(head)
-  #   end
-  # end
-  #
-  # def recursive_find_index(node, index)
-  #   return node if index == 0
-  #   recursive_find_index(node.link, index - 1)
-  # end
-  #
-  # def [](index)
-  #   return if index > (count - 1)
-  #   recursive_find_index(head, index)
-  # end
+  def pop(list_node = head)
+    if head.nil?
+      head
+    elsif head.link.nil?
+      node = head
+      self.head = nil
+      node
+    elsif list_node.link.link.nil?
+      node = list_node.link
+      list_node.link = nil
+      node
+    else
+      pop(list_node.link)
+    end
+  end
+
+  def [](index, list_node = head)
+    if index == 0
+      list_node
+    elsif index < count
+      self.[](index - 1, list_node.link)
+    end
+  end
   #
   # def delete(data, node = head)
   #   # empty? do nothing
