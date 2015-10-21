@@ -231,7 +231,29 @@ class RecursiveLinkedListTest < Minitest::Test
     assert_equal 1, @list.find_by_value(:red)
     assert_equal 2, @list.find_by_value(:yellow)
   end
-  #
+
+  def test_it_removes_a_node_by_index_from_middle_of_list
+    @list.append(Node.new(:blue))
+    @list.append(Node.new(:red))
+    @list.append(Node.new(:yellow))
+    @list.append(Node.new(:green))
+
+    assert_equal :yellow, @list.remove_by_index(2).data
+    assert_equal :blue, @list.head.data
+    assert_equal :red, @list.head.link.data
+    assert_equal :green, @list.head.link.link.data
+  end
+
+  def test_it_removes_a_node_by_index_from_end_of_list
+    @list.append(Node.new(:blue))
+    @list.append(Node.new(:red))
+    @list.append(Node.new(:green))
+    
+    assert_equal :green, @list.remove_by_index(2).data
+    assert_equal :blue, @list.head.data
+    assert_equal :red, @list.head.link.data
+  end
+
   # def test_it_removes_a_node_by_content
   #   @list.append(Node.new(:yellow))
   #   @list.append(Node.new(:blue))

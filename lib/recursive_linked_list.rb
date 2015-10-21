@@ -91,7 +91,21 @@ class RecursiveLinkedList
     end
   end
 
-  #
+  def remove_by_index(index, list_node = head)
+    if index == 0
+      node = self.head
+      self.head = head.link
+      node
+    elsif index == 1 && list_node
+      node = list_node.link
+      list_node.link = list_node.link.link if list_node.link
+      node
+    else
+      remove_by_index(index - 1, list_node.link)
+    end
+  end
+
+
   # def delete(data, node = head)
   #   # empty? do nothing
   #   return if node.nil? #returns yellow
