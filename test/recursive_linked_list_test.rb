@@ -70,18 +70,65 @@ class RecursiveLinkedListTest < Minitest::Test
     assert_equal :blue, @list.head.data
   end
 
-  def test_it_inserts_node_at_appropriate_index
+  def test_it_inserts_node_at_end_of_list
     @list.insert(Node.new(:blue), 0)
     @list.insert(Node.new(:red), 1)
 
     assert_equal :blue, @list.head.data
     assert_equal :red, @list.head.link.data
+  end
 
+  def test_it_inserts_node_at_appropriate_index
+    @list.insert(Node.new(:blue), 0)
+    @list.insert(Node.new(:red), 1)
     @list.insert(Node.new(:yellow), 1)
 
     assert_equal :blue, @list.head.data
     assert_equal :yellow, @list.head.link.data
     assert_equal :red, @list.head.link.link.data
+
+    @list.insert(Node.new(:green), 2)
+
+    assert_equal :blue, @list.head.data
+    assert_equal :yellow, @list.head.link.data
+    assert_equal :green, @list.head.link.link.data
+    assert_equal :red, @list.head.link.link.link.data
+  end
+
+  def test_it_returns_false_if_data_not_single_element_list
+    @list.append(Node.new(:blue))
+
+    refute @list.includes?(:green)
+  end
+
+  def test_it_returns_false_if_data_not_in_two_element_list
+    @list.append(Node.new(:blue))
+    @list.append(Node.new(:red))
+
+    refute @list.includes?(:green)
+  end
+
+  def test_it_returns_true_if_data_in_two_element_list
+    @list.append(Node.new(:blue))
+    @list.append(Node.new(:red))
+
+    assert @list.includes?(:red)
+  end
+
+  def test_it_returns_false_if_data_not_in_multi_element_list
+    @list.append(Node.new(:blue))
+    @list.append(Node.new(:red))
+    @list.append(Node.new(:yellow))
+
+    refute @list.includes?(:green)
+  end
+
+  def test_it_returns_true_if_data_in_multi_element_list
+    @list.append(Node.new(:blue))
+    @list.append(Node.new(:red))
+    @list.append(Node.new(:yellow))
+
+    assert @list.includes?(:yellow)
   end
 
   def test_count_is_0_when_the_list_is_empty

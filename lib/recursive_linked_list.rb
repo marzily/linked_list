@@ -32,6 +32,14 @@ class RecursiveLinkedList
     end
   end
 
+  def includes?(data, list_node = head)
+    if list_node.link.nil?
+      list_node.data == data
+    else
+      includes?(data, list_node.link)
+    end
+  end
+
   def count(list_node = head)
     if list_node.nil?
       0
