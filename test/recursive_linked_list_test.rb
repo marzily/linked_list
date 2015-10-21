@@ -77,11 +77,11 @@ class RecursiveLinkedListTest < Minitest::Test
     assert_equal :blue, @list.head.data
     assert_equal :red, @list.head.link.data
 
-    # @list.insert(Node.new(:yellow), 1)
+    @list.insert(Node.new(:yellow), 1)
 
-    # assert_equal :blue, @list.head.data
-    # assert_equal :yellow, @list.head.link.data
-    # assert_equal :red, @list.head.link.link.data
+    assert_equal :blue, @list.head.data
+    assert_equal :yellow, @list.head.link.data
+    assert_equal :red, @list.head.link.link.data
   end
 
   def test_count_is_0_when_the_list_is_empty
