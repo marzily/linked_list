@@ -93,7 +93,7 @@ class RecursiveLinkedList
 
   def remove_by_index(index, list_node = head)
     if index == 0
-      node = self.head
+      node = head
       self.head = head.link
       node
     elsif index == 1 && list_node
@@ -102,6 +102,20 @@ class RecursiveLinkedList
       node
     else
       remove_by_index(index - 1, list_node.link)
+    end
+  end
+
+  def remove_by_value(value, list_node = head)
+    if head.data == value
+      node = head
+      self.head = head.link
+      node
+    elsif list_node.link.data == value
+      node = list_node.link
+      list_node.link = list_node.link.link
+      node
+    else
+      remove_by_value(value, list_node.link)
     end
   end
 

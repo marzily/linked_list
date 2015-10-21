@@ -248,35 +248,43 @@ class RecursiveLinkedListTest < Minitest::Test
     @list.append(Node.new(:blue))
     @list.append(Node.new(:red))
     @list.append(Node.new(:green))
-    
+
     assert_equal :green, @list.remove_by_index(2).data
     assert_equal :blue, @list.head.data
     assert_equal :red, @list.head.link.data
   end
 
-  # def test_it_removes_a_node_by_content
-  #   @list.append(Node.new(:yellow))
-  #   @list.append(Node.new(:blue))
-  #
-  #   @list.delete(:blue)
-  #   assert_equal 1, @list.count
-  #   assert_equal :yellow, @list.head.data
-  # end
-  #
-  # def test_delete_only_removes_first_occurence
-  #   @list.append(Node.new(:yellow))
-  #   @list.append(Node.new(:yellow))
-  #   @list.delete(:yellow)
-  #   assert_equal 1, @list.count
-  # end
-  #
-  # def test_delete_all_removes_multiple_occurrences
-  #   @list.append(Node.new(:yellow))
-  #   @list.append(Node.new(:yellow))
-  #   @list.append(Node.new(:yellow))
-  #   @list.append(Node.new(:yellow))
-  #   @list.delete_all(:yellow)
-  #   assert_equal 0, @list.count
-  # end
+  def test_it_removes_a_node_by_content
+    @list.append(Node.new(:yellow))
+    @list.append(Node.new(:blue))
+
+    assert_equal :blue, @list.remove_by_value(:blue).data
+    assert_equal :yellow, @list.head.data
+    assert_nil @list.head.link
+  end
+
+  def test_it_only_removes_first_occurence
+    @list.append(Node.new(:yellow))
+    @list.append(Node.new(:yellow))
+    @list.append(Node.new(:yellow))
+
+    @list.remove_by_value(:yellow)
+
+    assert_equal :yellow, @list.head.data
+    assert_equal :yellow, @list.head.link.data
+    assert_nil @list.head.link.link
+  end
+
+  def test_it_only_removes_first_occurence_from_multi_element_list
+    @list.append(Node.new(:blue))
+    @list.append(Node.new(:red))
+    @list.append(Node.new(:yellow))
+    @list.append(Node.new(:green))
+
+    assert_equal :yellow, @list.remove_by_value(:yellow).data
+    assert_equal :blue, @list.head.data
+    assert_equal :red, @list.head.link.data
+    assert_equal :green, @list.head.link.link.data
+  end
 
 end
