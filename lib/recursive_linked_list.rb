@@ -82,6 +82,15 @@ class RecursiveLinkedList
       self.[](index - 1, list_node.link)
     end
   end
+
+  def find_by_value(data, list_node = head)
+    if list_node.data == data
+      0
+    else
+      1 + find_by_value(data, list_node.link)
+    end
+  end
+
   #
   # def delete(data, node = head)
   #   # empty? do nothing
