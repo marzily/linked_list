@@ -287,4 +287,13 @@ class RecursiveLinkedListTest < Minitest::Test
     assert_equal :green, @list.head.link.link.data
   end
 
+  def test_it_finds_the_distance_between_two_nodes
+    @list.append(Node.new(:blue))
+    @list.append(Node.new(:red))
+    @list.append(Node.new(:yellow))
+    @list.append(Node.new(:green))
+
+    assert_equal 3, @list.distance(:blue, :green)
+  end
+
 end

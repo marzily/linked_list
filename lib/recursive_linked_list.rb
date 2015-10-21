@@ -119,31 +119,7 @@ class RecursiveLinkedList
     end
   end
 
-
-  # def delete(data, node = head)
-  #   # empty? do nothing
-  #   return if node.nil? #returns yellow
-  #   if head.data == data
-  #     self.head = head.link
-  #   elsif node.link.data == data
-  #     node.link = node.link.link
-  #   else
-  #     delete(data, node.link)
-  #   end
-  #   # current node has the data -- remove head by making head's neighbor the new head
-  #   # otherwise move frame of reference to head's neighbor
-  # end
-  #
-  # def delete_all(data, node = head)
-  #   return if node.nil? #reached the end
-  #   delete(data)
-  #   # if head.data == data
-  #   #   self.head = head.link
-  #   # elsif node.link.data == data
-  #   #   node.link = node.link.link
-  #   # end
-  #   delete_all(data, node.link)
-  # end
-
-
+  def distance(value1, value2)
+    find_by_value(value2) - find_by_value(value1)
+  end
 end
