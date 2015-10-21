@@ -93,43 +93,43 @@ class IterativeLinkedListTest < Minitest::Test
     assert_equal :green, @list.head.link.link.data
     assert_equal :red, @list.head.link.link.link.data
   end
-  #
-  # def test_it_returns_false_if_data_not_single_element_list
-  #   @list.append(Node.new(:blue))
-  #
-  #   refute @list.includes?(:green)
-  # end
-  #
-  # def test_it_returns_false_if_data_not_in_two_element_list
-  #   @list.append(Node.new(:blue))
-  #   @list.append(Node.new(:red))
-  #
-  #   refute @list.includes?(:green)
-  # end
-  #
-  # def test_it_returns_true_if_data_in_two_element_list
-  #   @list.append(Node.new(:blue))
-  #   @list.append(Node.new(:red))
-  #
-  #   assert @list.includes?(:red)
-  # end
-  #
-  # def test_it_returns_false_if_data_not_in_multi_element_list
-  #   @list.append(Node.new(:blue))
-  #   @list.append(Node.new(:red))
-  #   @list.append(Node.new(:yellow))
-  #
-  #   refute @list.includes?(:green)
-  # end
-  #
-  # def test_it_returns_true_if_data_in_multi_element_list
-  #   @list.append(Node.new(:blue))
-  #   @list.append(Node.new(:red))
-  #   @list.append(Node.new(:yellow))
-  #
-  #   assert @list.includes?(:yellow)
-  # end
-  #
+
+  def test_it_returns_false_if_data_not_in_single_element_list
+    @list.append(Node.new(:blue))
+
+    refute @list.includes?(:green)
+  end
+
+  def test_it_returns_false_if_data_not_in_two_element_list
+    @list.append(Node.new(:blue))
+    @list.append(Node.new(:red))
+
+    refute @list.includes?(:green)
+  end
+
+  def test_it_returns_true_if_data_in_two_element_list
+    @list.append(Node.new(:blue))
+    @list.append(Node.new(:red))
+
+    assert @list.includes?(:red)
+  end
+
+  def test_it_returns_false_if_data_not_in_multi_element_list
+    @list.append(Node.new(:blue))
+    @list.append(Node.new(:red))
+    @list.append(Node.new(:yellow))
+
+    refute @list.includes?(:green)
+  end
+
+  def test_it_returns_true_if_data_in_multi_element_list
+    @list.append(Node.new(:blue))
+    @list.append(Node.new(:red))
+    @list.append(Node.new(:yellow))
+
+    assert @list.includes?(:yellow)
+  end
+  
   # def test_it_returns_nil_from_an_empty_list
   #   assert_nil @list.pop
   # end

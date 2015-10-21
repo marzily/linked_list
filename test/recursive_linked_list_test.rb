@@ -94,7 +94,7 @@ class RecursiveLinkedListTest < Minitest::Test
     assert_equal :red, @list.head.link.link.link.data
   end
 
-  def test_it_returns_false_if_data_not_single_element_list
+  def test_it_returns_false_if_data_not_in_single_element_list
     @list.append(Node.new(:blue))
 
     refute @list.includes?(:green)

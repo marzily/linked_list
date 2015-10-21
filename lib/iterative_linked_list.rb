@@ -25,17 +25,31 @@ class IterativeLinkedList
       node.link = head
       self.head = node
     else
-      prev = head
-
-      i = 1
-      while i < index
-        prev = prev.link
-        i += 1
-      end
+      prev = find_node(head, index)
 
       node.link = prev.link
       prev.link = node
     end
+  end
+
+  def find_node(prev_node, index)
+    i = 1
+    while i < index
+      prev_node = prev_node.link
+      i += 1
+    end
+    prev_node
+  end
+
+  def includes?(data)
+    current = head
+
+    until current.nil?
+      return true if current.data == data
+      current = current.link
+    end
+
+    false
   end
 
   def count
