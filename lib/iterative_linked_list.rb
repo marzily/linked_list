@@ -52,6 +52,25 @@ class IterativeLinkedList
     false
   end
 
+  def pop
+    if head.nil? || head.link.nil?
+      node = head
+      self.head = nil
+      node
+    else
+      prev = head
+      current = head.link
+
+      until current.link.nil?
+        prev = current
+        current = current.link
+      end
+
+      prev.link = nil
+      current
+    end
+  end
+
   def count
     return 0 if head.nil?
 
@@ -72,27 +91,6 @@ class IterativeLinkedList
       current = current.link
     end
     current
-  end
-
-  def pop
-    return head if head.nil?
-
-    if count == 1
-      node = head
-      self.head = nil
-      node
-    else
-      prev = head
-      current = head.link
-
-      until current.link.nil?
-        prev = current
-        current = current.link
-      end
-
-      prev.link = nil
-      current
-    end
   end
 
   def [](index)

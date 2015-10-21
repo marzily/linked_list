@@ -129,37 +129,37 @@ class IterativeLinkedListTest < Minitest::Test
 
     assert @list.includes?(:yellow)
   end
-  
-  # def test_it_returns_nil_from_an_empty_list
-  #   assert_nil @list.pop
-  # end
-  #
-  # def test_it_returns_element_from_a_one_element_list
-  #   @list.append(Node.new(:blue))
-  #
-  #   assert_equal :blue, @list.pop.data
-  #   assert_nil @list.head
-  # end
-  #
-  # def test_it_returns_last_element_from_a_two_element_list
-  #   @list.append(Node.new(:red))
-  #   @list.append(Node.new(:yellow))
-  #
-  #   assert_equal :yellow, @list.pop.data
-  #   assert_equal :red, @list.head.data
-  #   assert_nil @list.head.link
-  # end
-  #
-  # def test_it_returns_last_element_from_a_multi_element_list
-  #   @list.append(Node.new(:red))
-  #   @list.append(Node.new(:yellow))
-  #   @list.append(Node.new(:blue))
-  #
-  #   assert_equal :blue, @list.pop.data
-  #   assert_equal :red, @list.head.data
-  #   assert_equal :yellow, @list.head.link.data
-  #   assert_nil @list.head.link.link
-  # end
+
+  def test_it_returns_nil_from_an_empty_list
+    assert_nil @list.pop
+  end
+
+  def test_it_returns_element_from_a_one_element_list
+    @list.append(Node.new(:blue))
+
+    assert_equal :blue, @list.pop.data
+    assert_nil @list.head
+  end
+
+  def test_it_returns_last_element_from_a_two_element_list
+    @list.append(Node.new(:red))
+    @list.append(Node.new(:yellow))
+
+    assert_equal :yellow, @list.pop.data
+    assert_equal :red, @list.head.data
+    assert_nil @list.head.link
+  end
+
+  def test_it_returns_last_element_from_a_multi_element_list
+    @list.append(Node.new(:red))
+    @list.append(Node.new(:yellow))
+    @list.append(Node.new(:blue))
+
+    assert_equal :blue, @list.pop.data
+    assert_equal :red, @list.head.data
+    assert_equal :yellow, @list.head.link.data
+    assert_nil @list.head.link.link
+  end
   #
   # def test_count_is_0_when_the_list_is_empty
   #   assert_equal 0, @list.count
