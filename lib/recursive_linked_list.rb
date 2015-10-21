@@ -40,6 +40,22 @@ class RecursiveLinkedList
     end
   end
 
+  def pop(list_node = head)
+    if head.nil?
+      head
+    elsif head.link.nil?
+      node = head
+      self.head = nil
+      node
+    elsif list_node.link.link.nil?
+      node = list_node.link
+      list_node.link = nil
+      node
+    else
+      pop(list_node.link)
+    end
+  end
+
   def count(list_node = head)
     if list_node.nil?
       0
@@ -58,22 +74,7 @@ class RecursiveLinkedList
     end
   end
 
-  def pop(list_node = head)
-    if head.nil?
-      head
-    elsif head.link.nil?
-      node = head
-      self.head = nil
-      node
-    elsif list_node.link.link.nil?
-      node = list_node.link
-      list_node.link = nil
-      node
-    else
-      pop(list_node.link)
-    end
-  end
-
+# find_by_index
   def [](index, list_node = head)
     if index == 0
       list_node
