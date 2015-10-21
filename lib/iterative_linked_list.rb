@@ -20,6 +20,24 @@ class IterativeLinkedList
     self.head = node
   end
 
+  def insert(node, index)
+    if index == 0
+      node.link = head
+      self.head = node
+    else
+      prev = head
+
+      i = 1
+      while i < index
+        prev = prev.link
+        i += 1
+      end
+
+      node.link = prev.link
+      prev.link = node
+    end
+  end
+
   def count
     return 0 if head.nil?
 
@@ -108,9 +126,6 @@ class IterativeLinkedList
       prev = current
       current = current.link
     end
-
-
-
   end
 
 end

@@ -1,7 +1,6 @@
 require './test/test_helper'
 
 class RecursiveLinkedListTest < Minitest::Test
-
   def setup
     @list = RecursiveLinkedList.new
   end
@@ -295,5 +294,4 @@ class RecursiveLinkedListTest < Minitest::Test
 
     assert_equal 3, @list.distance(:blue, :green)
   end
-
 end
