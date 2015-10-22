@@ -106,6 +106,18 @@ class IterativeLinkedList
     current
   end
 
+  def find_by_value(data)
+    index = 0
+    current = head
+
+    until current.data == data
+      current = current.link
+      index += 1
+    end
+
+    index
+  end
+
   def shift
     return head if head.nil?
 

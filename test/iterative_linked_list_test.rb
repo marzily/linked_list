@@ -221,15 +221,15 @@ class IterativeLinkedListTest < Minitest::Test
     assert_nil @list[1]
     assert_nil @list[2]
   end
-  
-  # def test_it_finds_index_of_value
-  #   @list.append(Node.new(:blue))
-  #   @list.append(Node.new(:red))
-  #   @list.append(Node.new(:yellow))
-  #
-  #   assert_equal 1, @list.find_by_value(:red)
-  #   assert_equal 2, @list.find_by_value(:yellow)
-  # end
+
+  def test_it_finds_first_index_of_value
+    @list.append(Node.new(:blue))
+    @list.append(Node.new(:red))
+    @list.append(Node.new(:yellow))
+
+    assert_equal 1, @list.find_by_value(:red)
+    assert_equal 2, @list.find_by_value(:yellow)
+  end
   #
   # def test_it_removes_a_node_by_index_from_middle_of_list
   #   @list.append(Node.new(:blue))

@@ -222,7 +222,7 @@ class RecursiveLinkedListTest < Minitest::Test
     assert_nil @list[2]
   end
 
-  def test_it_finds_index_of_value
+  def test_it_finds_first_index_of_value
     @list.append(Node.new(:blue))
     @list.append(Node.new(:red))
     @list.append(Node.new(:yellow))
