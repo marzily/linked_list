@@ -243,6 +243,12 @@ class RecursiveLinkedListTest < Minitest::Test
     assert_equal :green, @list.head.link.link.data
   end
 
+  def test_it_returns_nil_if_index_is_out_of_range
+    @list.append(Node.new(:blue))
+
+    assert_nil @list.remove_by_index(3)
+  end
+
   def test_it_removes_a_node_by_index_from_end_of_list
     @list.append(Node.new(:blue))
     @list.append(Node.new(:red))
