@@ -84,7 +84,7 @@ class IterativeLinkedList
   end
 
   def tail
-    return head if head.nil?
+    return if head.nil?
 
     current = head
     until current.link.nil?
@@ -93,8 +93,9 @@ class IterativeLinkedList
     current
   end
 
+# find_by_index
   def [](index)
-    return nil if index > (count - 1)
+    return if index > (count - 1)
 
     location = 0
     current = head
