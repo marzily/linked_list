@@ -25,20 +25,21 @@ class IterativeLinkedList
       node.link = head
       self.head = node
     else
-      prev = find_node(head, index)
-
-      node.link = prev.link
-      prev.link = node
+      insert_find_node(node, index)
     end
   end
 
-  def find_node(prev_node, index)
+  def insert_find_node(node, index)
+    prev = head
+
     i = 1
     while i < index
-      prev_node = prev_node.link
+      prev = prev.link
       i += 1
     end
-    prev_node
+
+    node.link = prev.link
+    prev.link = node
   end
 
   def includes?(data)
@@ -58,17 +59,21 @@ class IterativeLinkedList
       self.head = nil
       node
     else
-      prev = head
-      current = head.link
-
-      until current.link.nil?
-        prev = current
-        current = current.link
-      end
-
-      prev.link = nil
-      current
+      pop_loop
     end
+  end
+
+  def pop_loop
+    prev = head
+    current = head.link
+
+    until current.link.nil?
+      prev = current
+      current = current.link
+    end
+
+    prev.link = nil
+    current
   end
 
   def count
@@ -87,9 +92,7 @@ class IterativeLinkedList
     return if head.nil?
 
     current = head
-    until current.link.nil?
-      current = current.link
-    end
+    current = current.link until current.link.nil?
     current
   end
 
@@ -130,19 +133,23 @@ class IterativeLinkedList
       head.link = head.link.link
       node
     else
-      prev = head
-      current = head.link
-
-      i = 1
-      until i == index
-        prev = current
-        current = current.link
-        i += 1
-      end
-
-      prev.link = current.link
-      current
+      remove_by_index_loop(index)
     end
+  end
+
+  def remove_by_index_loop(index)
+    prev = head
+    current = head.link
+
+    i = 1
+    until i == index
+      prev = current
+      current = current.link
+      i += 1
+    end
+
+    prev.link = current.link
+    current
   end
 
   def remove_by_value(data)
@@ -151,17 +158,24 @@ class IterativeLinkedList
       self.head = head.link
       node
     else
-      prev = head
-      current = head.link
-
-      until current.data == data
-        prev = current
-        current = current.link
-      end
-
-      prev.link = current.link
-      current
+      remove_by_value_loop(data)
     end
   end
 
+  def remove_by_value_loop(data)
+    prev = head
+    current = head.link
+
+    until current.data == data
+      prev = current
+      current = current.link
+    end
+
+    prev.link = current.link
+    current
+  end
+
+  def distance(value1, value2)
+    find_by_value(value2) - find_by_value(value1)
+  end
 end

@@ -33,17 +33,17 @@ class RecursiveLinkedList
   end
 
   def includes?(data, list_node = head)
-    if list_node.link.nil?
-      list_node.data == data
+    if list_node.nil?
+      false
+    elsif list_node.data == data
+      true
     else
       includes?(data, list_node.link)
     end
   end
 
   def pop(list_node = head)
-    if head.nil?
-      head
-    elsif head.link.nil?
+    if head.nil? || head.link.nil?
       node = head
       self.head = nil
       node
@@ -59,8 +59,6 @@ class RecursiveLinkedList
   def count(list_node = head)
     if list_node.nil?
       0
-    elsif list_node.link.nil?
-      1
     else
       1 + count(list_node.link)
     end
@@ -100,7 +98,7 @@ class RecursiveLinkedList
       node
     elsif index == 1 && list_node
       node = list_node.link
-      list_node.link = list_node.link.link if list_node.link
+      list_node.link = list_node.link.link
       node
     else
       remove_by_index(index - 1, list_node.link)

@@ -94,40 +94,31 @@ class IterativeLinkedListTest < Minitest::Test
     assert_equal :red, @list.head.link.link.link.data
   end
 
-  def test_it_returns_false_if_data_not_in_single_element_list
+  def test_it_correctly_checks_single_element_list
     @list.append(Node.new(:blue))
 
     refute @list.includes?(:green)
+    assert @list.includes?(:blue)
   end
 
-  def test_it_returns_false_if_data_not_in_two_element_list
+  def test_it_correctly_checks_two_element_list
     @list.append(Node.new(:blue))
     @list.append(Node.new(:red))
 
     refute @list.includes?(:green)
-  end
-
-  def test_it_returns_true_if_data_in_two_element_list
-    @list.append(Node.new(:blue))
-    @list.append(Node.new(:red))
-
+    assert @list.includes?(:blue)
     assert @list.includes?(:red)
   end
 
-  def test_it_returns_false_if_data_not_in_multi_element_list
+  def test_it_correctly_checks_multi_element_list
     @list.append(Node.new(:blue))
     @list.append(Node.new(:red))
     @list.append(Node.new(:yellow))
 
-    refute @list.includes?(:green)
-  end
-
-  def test_it_returns_true_if_data_in_multi_element_list
-    @list.append(Node.new(:blue))
-    @list.append(Node.new(:red))
-    @list.append(Node.new(:yellow))
-
+    assert @list.includes?(:blue)
+    assert @list.includes?(:red)
     assert @list.includes?(:yellow)
+    refute @list.includes?(:green)
   end
 
   def test_it_returns_nil_from_an_empty_list
@@ -161,21 +152,26 @@ class IterativeLinkedListTest < Minitest::Test
     assert_nil @list.head.link.link
   end
 
-  def test_count_is_0_when_the_list_is_empty
+  def test_it_counts_empty_list
     assert_equal 0, @list.count
   end
 
-  def test_count_is_1_when_list_has_one_node
+  def test_it_counts_single_element_list
     @list.append(Node.new(:blue))
 
     assert_equal 1, @list.count
   end
 
-  def test_count_is_2_when_list_has_two_nodes
+  def test_it_counts_multi_element_list
     @list.append(Node.new(:blue))
     @list.append(Node.new(:red))
 
     assert_equal 2, @list.count
+
+    @list.append(Node.new(:green))
+    @list.append(Node.new(:yellow))
+
+    assert_equal 4, @list.count
   end
 
   def test_it_can_access_the_tail_of_an_empty_list
@@ -190,6 +186,7 @@ class IterativeLinkedListTest < Minitest::Test
 
   def test_it_can_access_the_tail_of_a_multi_element_list
     @list.append(Node.new(:blue))
+    @list.append(Node.new(:yellow))
     @list.append(Node.new(:red))
 
     assert_equal :red, @list.tail.data
@@ -291,12 +288,12 @@ class IterativeLinkedListTest < Minitest::Test
     assert_equal :green, @list.head.link.link.data
   end
 
-  # def test_it_finds_the_distance_between_two_nodes
-  #   @list.append(Node.new(:blue))
-  #   @list.append(Node.new(:red))
-  #   @list.append(Node.new(:yellow))
-  #   @list.append(Node.new(:green))
-  #
-  #   assert_equal 3, @list.distance(:blue, :green)
-  # end
+  def test_it_finds_the_distance_between_two_nodes
+    @list.append(Node.new(:blue))
+    @list.append(Node.new(:red))
+    @list.append(Node.new(:yellow))
+    @list.append(Node.new(:green))
+
+    assert_equal 3, @list.distance(:blue, :green)
+  end
 end
