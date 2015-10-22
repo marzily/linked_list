@@ -119,9 +119,9 @@ class IterativeLinkedList
   end
 
   def remove_by_index(index)
-    return if index > count
-
-    if index == 0
+    if index > count
+      nil
+    elsif index == 0
       node = head
       self.head = head.link
       node
@@ -145,38 +145,22 @@ class IterativeLinkedList
     end
   end
 
-  def shift
-    return head if head.nil?
-
-    first_node = head
-    self.head = head.link
-    first_node
-  end
-
-  def unshift(node)
-    if head.nil?
-      self.head = node
+  def remove_by_value(data)
+    if head.nil? || head.data == data
+      node = head
+      self.head = head.link
+      node
     else
-      linked_node = head
-      self.head = node
-      node.link = linked_node
-    end
-  end
+      prev = head
+      current = head.link
 
-  def delete(node_data)
-    return head if head.nil? || head.data == node_data
-
-    prev = head
-    current = head.link
-
-    until current.link.nil?
-      if current.data == node_data
-        prev.link = current.link
-        deleted_node = current
+      until current.data == data
+        prev = current
+        current = current.link
       end
 
-      prev = current
-      current = current.link
+      prev.link = current.link
+      current
     end
   end
 
