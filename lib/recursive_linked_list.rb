@@ -105,17 +105,17 @@ class RecursiveLinkedList
     end
   end
 
-  def remove_by_value(value, list_node = head)
-    if head.data == value
+  def remove_by_value(data, list_node = head)
+    if head.data == data
       node = head
       self.head = head.link
       node
-    elsif list_node.link.data == value
+    elsif list_node.link.data == data
       node = list_node.link
       list_node.link = list_node.link.link
       node
     else
-      remove_by_value(value, list_node.link)
+      remove_by_value(data, list_node.link)
     end
   end
 
