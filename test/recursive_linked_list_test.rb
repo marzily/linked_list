@@ -297,4 +297,34 @@ class RecursiveLinkedListTest < Minitest::Test
 
     assert_equal 3, @list.distance(:blue, :green)
   end
+
+  def test_it_can_reverse_itself_when_two_elements
+    @list.append(Node.new(:blue))
+    @list.append(Node.new(:red))
+
+    assert_equal :blue, @list.head.data
+
+    @list.reverse
+
+    assert_equal :red, @list.head.data
+    assert_equal :blue, @list.head.link.data
+    assert_equal nil, @list.head.link.link
+  end
+
+  def test_it_can_reverse_entire_list
+    @list.append(Node.new(:blue))
+    @list.append(Node.new(:red))
+    @list.append(Node.new(:yellow))
+    @list.append(Node.new(:green))
+
+    assert_equal :blue, @list.head.data
+
+    @list.reverse
+
+    assert_equal :green, @list.head.data
+    assert_equal :yellow, @list.head.link.data
+    assert_equal :red, @list.head.link.link.data
+    assert_equal :blue, @list.head.link.link.link.data
+    assert_equal nil, @list.head.link.link.link.link
+  end
 end

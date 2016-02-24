@@ -122,4 +122,18 @@ class RecursiveLinkedList
   def distance(value1, value2)
     find_by_value(value2) - find_by_value(value1)
   end
+
+  def reverse(list_node = head, calls = 0)
+    old_head = head
+    first_node = list_node.link
+    second_node = list_node
+    more = list_node.link.link
+
+    first_node.link = second_node
+    self.head = first_node
+
+    second_node.link = (calls == 0 ? nil : old_head)
+
+    reverse(more, calls += 1) unless more.nil?
+  end
 end
